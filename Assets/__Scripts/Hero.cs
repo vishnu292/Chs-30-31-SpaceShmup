@@ -22,11 +22,13 @@ public class Hero : MonoBehaviour {
     // This variable holds a reference to the last triggering GameObject
     private GameObject lastTriggerGo = null;
 
+    public delegate void WeaponFireDelegate();
+    public WeaponFireDelegate fireDelegate;
 
     //TODO: Add function delegate declaration
+    
 
-
-
+    //void awake
 	void Start()
     {
         if (S == null)
@@ -71,7 +73,9 @@ public class Hero : MonoBehaviour {
         // First, make sure the button is pressed: Axis("Jump")
         // Then ensure that fireDelegate isn't null to avoid an error
 
-
+        if (Input.GetAxis("Jump") == 1 && fireDelegate != null) {
+            fireDelegate();
+        }
 
     }
 
@@ -86,7 +90,7 @@ public class Hero : MonoBehaviour {
         projGO.transform.position = transform.position;
         Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
 
-        //        rigidB.velocity = Vector3.up * projectileSpeed;        
+              rigidB.velocity = Vector3.up * projectileSpeed;        
 
         Projectile proj = projGO.GetComponent<Projectile>();  
 

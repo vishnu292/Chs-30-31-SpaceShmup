@@ -12,7 +12,7 @@ public class Enemy_3 : Enemy { // Enemy_3 extends Enemy
     public Vector3[] points;
     public float birthTime;
 
-    private void Start()
+    protected void Start()
     {
         points = new Vector3[3]; // Initialize points
 
